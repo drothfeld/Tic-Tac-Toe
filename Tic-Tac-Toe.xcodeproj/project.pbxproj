@@ -14,6 +14,7 @@
 		B0C39F4E1F795FD4005EBFB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0C39F4C1F795FD4005EBFB9 /* LaunchScreen.storyboard */; };
 		B0C39F591F795FD4005EBFB9 /* Tic_Tac_ToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C39F581F795FD4005EBFB9 /* Tic_Tac_ToeTests.swift */; };
 		B0C39F641F795FD4005EBFB9 /* Tic_Tac_ToeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C39F631F795FD4005EBFB9 /* Tic_Tac_ToeUITests.swift */; };
+		B0C39F721F7972F3005EBFB9 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = B0C39F711F7972E0005EBFB9 /* Assets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		B0C39F5F1F795FD4005EBFB9 /* Tic-Tac-ToeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tic-Tac-ToeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0C39F631F795FD4005EBFB9 /* Tic_Tac_ToeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tic_Tac_ToeUITests.swift; sourceTree = "<group>"; };
 		B0C39F651F795FD4005EBFB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0C39F711F7972E0005EBFB9 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		B0C39F421F795FD4005EBFB9 /* Tic-Tac-Toe */ = {
 			isa = PBXGroup;
 			children = (
+				B0C39F711F7972E0005EBFB9 /* Assets */,
 				B0C39F431F795FD4005EBFB9 /* AppDelegate.swift */,
 				B0C39F451F795FD4005EBFB9 /* ViewController.swift */,
 				B0C39F471F795FD4005EBFB9 /* Main.storyboard */,
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0C39F4E1F795FD4005EBFB9 /* LaunchScreen.storyboard in Resources */,
+				B0C39F721F7972F3005EBFB9 /* Assets in Resources */,
 				B0C39F4B1F795FD4005EBFB9 /* Assets.xcassets in Resources */,
 				B0C39F491F795FD4005EBFB9 /* Main.storyboard in Resources */,
 			);
