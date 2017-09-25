@@ -44,7 +44,6 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F4q-c0-9bx" userLabel="B00">
                                         <rect key="frame" x="15" y="15" width="65" height="65"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.92202173874164739" green="1" blue="0.96477996761297757" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vmf-ko-m2a" userLabel="B01">
                                         <rect key="frame" x="119" y="15" width="65" height="65"/>
@@ -86,6 +85,14 @@
                     </view>
                     <connections>
                         <outlet property="B00" destination="F4q-c0-9bx" id="Jg8-1H-7Gh"/>
+                        <outlet property="B01" destination="vmf-ko-m2a" id="uH1-DV-Usz"/>
+                        <outlet property="B02" destination="kB4-2m-UmG" id="rsW-mW-HUP"/>
+                        <outlet property="B03" destination="aba-3v-DgX" id="lp4-8a-8Jl"/>
+                        <outlet property="B04" destination="JtK-iV-Jev" id="WWZ-W7-fTK"/>
+                        <outlet property="B05" destination="27g-Nn-zA8" id="4Xh-um-ZwL"/>
+                        <outlet property="B06" destination="rPW-HR-Y5H" id="hYL-h7-sRL"/>
+                        <outlet property="B07" destination="C14-DD-hsQ" id="3UX-fw-ZrY"/>
+                        <outlet property="B08" destination="SMC-KX-v9t" id="gnM-CT-PZf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
