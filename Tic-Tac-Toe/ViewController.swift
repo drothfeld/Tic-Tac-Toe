@@ -22,8 +22,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var B08: UIImageView!
     
     // Game Values
+    let playerOne = 0
+    let playerTwo = 1
     var gameState = [[Int]]()
-    var playerTurn = "RED"
+    var playerTurn = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +45,27 @@ class ViewController: UIViewController {
         }
     }
     
+    func playerTurnSwitch() {
+        if (playerTurn == playerOne) {
+            playerTurn = playerTwo
+        } else {
+            playerTurn = playerOne
+        }
+    }
+    
     // User Touch Interatction
     @objc func tapResponse(gestureRecognizer: UITapGestureRecognizer) {
         let tappedImageColor = gestureRecognizer.view?.backgroundColor
-        self.B00.backgroundColor = UIColor.red
+        if (tappedImageColor != UIColor.red || tappedImageColor != UIColor.blue) {
+            let currentPlayerColor: UIColor
+            if (playerTurn == playerOne) {
+                currentPlayerColor = UIColor.red
+            } else {
+                currentPlayerColor = UIColor.blue
+            }
+            gestureRecognizer.view?.backgroundColor = currentPlayerColor
+            playerTurnSwitch()
+        }
     }
 
     override func didReceiveMemoryWarning() {
