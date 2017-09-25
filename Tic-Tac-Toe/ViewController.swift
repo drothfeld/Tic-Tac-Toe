@@ -9,6 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    // Game Values
+    var gameState = [[Int]]()
+    var playerTurn = "RED"
 
     override func viewDidLoad() {
         super.viewDidLoad()
