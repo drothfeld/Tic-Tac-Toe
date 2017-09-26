@@ -20,11 +20,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var B06: UIImageView!
     @IBOutlet weak var B07: UIImageView!
     @IBOutlet weak var B08: UIImageView!
+    @IBOutlet weak var P0: UILabel!
+    @IBOutlet weak var P1: UILabel!
+    @IBOutlet weak var newGame: UIButton!
     
     // Game Constants
     let empty = UIColor.black
-    let playerOne = 0
-    let playerTwo = 1
+    let playerOne = UIColor.red
+    let playerTwo = UIColor.blue
     let block00 = 0
     let block01 = 1
     let block02 = 2
@@ -37,7 +40,9 @@ class ViewController: UIViewController {
     
     // Game Values
     var gameState = [[UIColor]]()
-    var playerTurn = 0
+    var playerTurn = UIColor.red
+    var playerOneScore = 0
+    var playerTwoScore = 0
     
     
     override func viewDidLoad() {
@@ -70,12 +75,12 @@ class ViewController: UIViewController {
     // User Touch Interatction
     @objc func tapResponse(gestureRecognizer: UITapGestureRecognizer) {
         let tappedImageColor = gestureRecognizer.view?.backgroundColor
-        if (tappedImageColor != UIColor.red && tappedImageColor != UIColor.blue) {
+        if (tappedImageColor != playerOne && tappedImageColor != playerTwo) {
             let currentPlayerColor: UIColor
             if (playerTurn == playerOne) {
-                currentPlayerColor = UIColor.red
+                currentPlayerColor = playerOne
             } else {
-                currentPlayerColor = UIColor.blue
+                currentPlayerColor = playerTwo
             }
             gestureRecognizer.view?.backgroundColor = currentPlayerColor
             
