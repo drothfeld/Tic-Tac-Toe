@@ -43,6 +43,7 @@ class ViewController: UIViewController {
     var playerTurn = UIColor.red
     var playerOneScore = 0
     var playerTwoScore = 0
+    var gameOver = false
     
     
     override func viewDidLoad() {
@@ -52,6 +53,8 @@ class ViewController: UIViewController {
     }
     
     func gameSetup() {
+        gameOver = false
+        newGame.isHidden = true
         let gameImageViews = [B00, B01, B02, B03, B04, B05, B06, B07, B08]
         gameState = [ [empty, empty, empty], [empty, empty, empty], [empty, empty, empty] ]
         
@@ -59,9 +62,11 @@ class ViewController: UIViewController {
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapResponse))
             imageView?.addGestureRecognizer(tapGestureRecognizer)
             imageView?.isUserInteractionEnabled = true
+            imageView?.backgroundColor = empty
             tapGestureRecognizer.numberOfTapsRequired = 1
             tapGestureRecognizer.numberOfTouchesRequired = 1
         }
+        
     }
     
     func playerTurnSwitch() {
@@ -72,10 +77,9 @@ class ViewController: UIViewController {
         }
     }
     
-    // User Touch Interatction
     @objc func tapResponse(gestureRecognizer: UITapGestureRecognizer) {
         let tappedImageColor = gestureRecognizer.view?.backgroundColor
-        if (tappedImageColor != playerOne && tappedImageColor != playerTwo) {
+        if (tappedImageColor != playerOne && tappedImageColor != playerTwo && !gameOver) {
             let currentPlayerColor: UIColor
             if (playerTurn == playerOne) {
                 currentPlayerColor = playerOne
@@ -85,8 +89,47 @@ class ViewController: UIViewController {
             gestureRecognizer.view?.backgroundColor = currentPlayerColor
             
             updateGameState(currentPlayerColor: currentPlayerColor, imageTag: view!.tag)
+            checkGameState()
             playerTurnSwitch()
         }
+    }
+    
+    func checkGameState() {
+        // Top Row
+        let winCondition00 = (gameState[0][0] != empty && gameState[0][0] == gameState[0][1] && gameState[0][1] == gameState[0][2])
+        // Middle Row
+        let winCondition01 = (gameState[1][0] != empty && gameState[1][0] == gameState[1][1] && gameState[1][1] == gameState[1][2])
+        // Bottom Row
+        let winCondition02 = (gameState[2][0] != empty && gameState[2][0] == gameState[2][1] && gameState[2][1] == gameState[2][2])
+        // Left Column
+        let winCondition03 = (gameState[0][0] != empty &&  gameState[0][0] == gameState[1][0] && gameState[1][0] == gameState[2][0])
+        // Middle Column
+        let winCondition04 = (gameState[0][1] != empty && gameState[0][1] == gameState[1][1] && gameState[1][1] == gameState[2][1])
+        // Right Column
+        let winCondition05 = (gameState[0][2] != empty && gameState[0][2] == gameState[1][2] && gameState[1][2] == gameState[2][2])
+        // Across Decline
+        let winCondition06 = (gameState[0][0] != empty && gameState[0][0] == gameState[1][1] && gameState[1][1] == gameState[2][2])
+        // Across Incline
+        let winCondition07 = (gameState[0][2] != empty && gameState[0][2] == gameState[1][1] && gameState[1][1] == gameState[2][0])
+        
+        // A Win Condition is Met
+        if (winCondition00 || winCondition01 || winCondition02 || winCondition03 || winCondition04 || winCondition05 || winCondition06 || winCondition07) {
+            updateScores(winningPlayer: playerTurn)
+        }
+    }
+    
+    func updateScores(winningPlayer: UIColor) {
+        // Player One Wins
+        if (winningPlayer == playerOne) {
+            playerOneScore += 1
+            P0.text = String(playerOneScore)
+        // Player Two Wins
+        } else {
+            playerTwoScore += 1
+            P1.text = String(playerTwoScore)
+        }
+        gameOver = true
+        newGame.isHidden = false
     }
     
     func updateGameState(currentPlayerColor: UIColor, imageTag: Int) {
@@ -116,7 +159,10 @@ class ViewController: UIViewController {
                 break
         }
     }
-
+    @IBAction func newGame(_ sender: Any) {
+        gameSetup()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
