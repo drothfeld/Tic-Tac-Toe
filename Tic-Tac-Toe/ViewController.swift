@@ -81,6 +81,7 @@ class ViewController: UIViewController {
         let tappedImageColor = gestureRecognizer.view?.backgroundColor
         if (tappedImageColor != playerOne && tappedImageColor != playerTwo && !gameOver) {
             let currentPlayerColor: UIColor
+            let tappedLocation = gestureRecognizer.view?.tag
             if (playerTurn == playerOne) {
                 currentPlayerColor = playerOne
             } else {
@@ -88,7 +89,7 @@ class ViewController: UIViewController {
             }
             gestureRecognizer.view?.backgroundColor = currentPlayerColor
             
-            updateGameState(currentPlayerColor: currentPlayerColor, imageTag: view!.tag)
+            updateGameState(currentPlayerColor: currentPlayerColor, imageTag: tappedLocation!)
             checkGameState()
             playerTurnSwitch()
         }
@@ -102,7 +103,7 @@ class ViewController: UIViewController {
         // Bottom Row
         let winCondition02 = (gameState[2][0] != empty && gameState[2][0] == gameState[2][1] && gameState[2][1] == gameState[2][2])
         // Left Column
-        let winCondition03 = (gameState[0][0] != empty &&  gameState[0][0] == gameState[1][0] && gameState[1][0] == gameState[2][0])
+        let winCondition03 = (gameState[0][0] != empty && gameState[0][0] == gameState[1][0] && gameState[1][0] == gameState[2][0])
         // Middle Column
         let winCondition04 = (gameState[0][1] != empty && gameState[0][1] == gameState[1][1] && gameState[1][1] == gameState[2][1])
         // Right Column
