@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var P0: UILabel!
     @IBOutlet weak var P1: UILabel!
     @IBOutlet weak var newGame: UIButton!
+    @IBOutlet weak var winnerText: UILabel!
     
     // Game Constants
     let empty = UIColor.black
@@ -55,6 +56,7 @@ class ViewController: UIViewController {
     func gameSetup() {
         gameOver = false
         newGame.isHidden = true
+        winnerText.isHidden = true
         let gameImageViews = [B00, B01, B02, B03, B04, B05, B06, B07, B08]
         gameState = [ [empty, empty, empty], [empty, empty, empty], [empty, empty, empty] ]
         
@@ -112,10 +114,16 @@ class ViewController: UIViewController {
         let winCondition06 = (gameState[0][0] != empty && gameState[0][0] == gameState[1][1] && gameState[1][1] == gameState[2][2])
         // Across Incline
         let winCondition07 = (gameState[0][2] != empty && gameState[0][2] == gameState[1][1] && gameState[1][1] == gameState[2][0])
+        // Tie Condition
+        let tieCondition = (gameState[0][0] != empty && gameState[0][1] != empty && gameState[0][2] != empty &&
+                            gameState[1][0] != empty && gameState[1][1] != empty && gameState[1][2] != empty &&
+                            gameState[2][0] != empty && gameState[2][1] != empty && gameState[2][2] != empty)
         
         // A Win Condition is Met
         if (winCondition00 || winCondition01 || winCondition02 || winCondition03 || winCondition04 || winCondition05 || winCondition06 || winCondition07) {
             updateScores(winningPlayer: playerTurn)
+        } else if (tieCondition) {
+            updateScores(winningPlayer: empty)
         }
     }
     
@@ -124,12 +132,22 @@ class ViewController: UIViewController {
         if (winningPlayer == playerOne) {
             playerOneScore += 1
             P0.text = String(playerOneScore)
+            winnerText.textColor = playerOne
+            winnerText.text = "RED WINS"
         // Player Two Wins
-        } else {
+        } else if (winningPlayer == playerTwo) {
             playerTwoScore += 1
             P1.text = String(playerTwoScore)
+            winnerText.textColor = playerTwo
+            winnerText.text = "BLUE WINS"
+        // Tie Game
+        } else if (winningPlayer == empty) {
+            winnerText.textColor = UIColor.green
+            winnerText.text = "TIE GAME"
         }
+        
         gameOver = true
+        winnerText.isHidden = false
         newGame.isHidden = false
     }
     
